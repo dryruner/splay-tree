@@ -198,7 +198,7 @@ splay* Insert(KEY_TYPE key, splay* root)
 /*
 Implementation: just Splay(key, root), if key doesn't exist in the tree(key != 
 root->key), return root directly; else join the root->lchild and root->rchild 
-and then free(old_root).
+and then free(old_root). 
 To join T1 and T2 (where all elements in T1 < any element in T2) is easy if we 
 have the largest element in T1 as T1's root, and here's a trick to simplify code,
 see "Note" below.
