@@ -48,6 +48,11 @@ splay* Splay(int key, splay* root)
 	splay* LeftTreeMax = &header;
 	splay* RightTreeMin = &header;
 	
+	/* loop until root->lchild == NULL || root->rchild == NULL; then break!
+	   (or when find the key, break too.)
+	 The zig/zag mode would only happen when cannot find key and will reach
+	 null on one side after RR or LL Rotation.
+	 */
 	while(1)
 	{
 		if(key < root->key)
@@ -91,7 +96,7 @@ splay* Splay(int key, splay* root)
 		else
 			break;
 	}
-	/* assemble L Tree, Middle Tree and R tree */
+	/* assemble L Tree, Middle Tree and R tree together */
 	LeftTreeMax->rchild = root->lchild;
 	RightTreeMin->lchild = root->rchild;
 	root->lchild = header.rchild;
@@ -120,6 +125,7 @@ splay* New_Node(KEY_TYPE key)
    *(including root node of *) as this new node's children.
 
 NOTE: This implementation is much better! Reasons are as follows in implementation 2.
+NOTE: This implementation of splay tree doesn't allow nodes of duplicate keys!
  */
 splay* Insert(KEY_TYPE key, splay* root)
 {
